@@ -1,20 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import dog from "./DogIcon.png"
+import "./Animal.css"
 
-class Animal extends Component {
+export default class AnimalList extends Component {
     render() {
         return (
-            <article>
-                <h1>Animal List</h1>
-                {this.props.animals.map((singleAnimal) => {
-                    return <div>
-                        <ul>
-                        <li key={singleAnimal.id}>Name: {singleAnimal.name}</li> <p>Species: {singleAnimal.species}</p>
-                    </ul>
-                </div>
-                })}
-            </article>
-        );
+            <section className="animals">
+                {
+                    this.props.animals.map(animal =>
+                        <div key={animal.id} className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">
+                                    <img src={dog} className="icon--dog" />
+                                    {animal.name}
+                                    <a href="#"
+                                        onClick={() => this.props.deleteAnimal(animal.id)}
+                                        className="card-link"> Delete</a>
+                                </h5>
+                            </div>
+                        </div>
+                    )
+                }
+            </section>
+        )
     }
 }
-
-export default Animal;
