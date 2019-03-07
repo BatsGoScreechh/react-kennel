@@ -3,6 +3,8 @@ import dog from "./DogIcon.png"
 import "./Animal.css"
 
 export default class AnimalList extends Component {
+
+
     render() {
         return (
             <section className="animals">
@@ -15,7 +17,7 @@ export default class AnimalList extends Component {
                                     {animal.name}
                                     <a href="#"
                                         onClick={() => this.props.deleteAnimal(animal.id)}
-                                        className="card-link"> Delete</a>
+                                        className="card-link">Delete</a>
                                 </h5>
                             </div>
                         </div>
@@ -23,5 +25,6 @@ export default class AnimalList extends Component {
                 }
             </section>
         )
+
     }
 }

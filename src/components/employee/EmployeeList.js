@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import employeeAvatar from "./EmployeeIcon.png"
+import "./Employee.css"
 
-class EmployeeList extends Component {
+export default class EmployeeList extends Component {
     render() {
-        return (
-            <article>
-                <h1>Employee List</h1>
-                {this.props.employees.map((singleEmployee) => {
-                   return <p key={singleEmployee.id}>{singleEmployee.name}</p>
-                })}
-            </article>
-        );
+        return <section className="employees">
+            {
+                this.props.employees.map(employee =>
+                    <div key={employee.id} className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">
+                                <img src={employeeAvatar} className="icon--employee" />
+                                <p className ="employeeName">{employee.name}</p>
+                                <a href="#"
+                                    onClick={() => this.props.deleteEmployee(employee.id)}
+                                    className="card-link">Delete</a>
+                            </h5>
+                        </div>
+                    </div>
+                )
+            }
+        </section>
+
     }
 }
 
-export default EmployeeList;
