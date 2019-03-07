@@ -4,6 +4,10 @@ import AnimalList from "./animal/AnimalList";
 import LocationList from "./location/LocationList";
 import EmployeeList from "./employee/EmployeeList";
 import OwnerList from "./owner/OwnerList";
+import AnimalManager from "../modules/AnimalManager"
+import EmployeeManager from "../modules/EmployeeManager"
+import OwnerManager from "../modules/OwnerManager"
+import LocationManager from "../modules/LocationManager"
 
 
 
@@ -18,12 +22,8 @@ export default class ApplicationViews extends Component {
     }
 
     deleteAnimal = id => {
-        return fetch(`http://localhost:5002/animals/${id}`, {
-            method: "DELETE"
-        })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/animals`))
-            .then(e => e.json())
+        return AnimalManager.deleteAnimal(id)
+            .then(() => AnimalManager.getAll())
             .then(animals => this.setState({
                 animals: animals
             })
@@ -31,12 +31,8 @@ export default class ApplicationViews extends Component {
     }
 
     deleteEmployee = id => {
-        return fetch(`http://localhost:5002/employees/${id}`, {
-            method: "DELETE"
-        })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/employees`))
-            .then(e => e.json())
+        return EmployeeManager.deleteEmployee(id)
+            .then(() => EmployeeManager.getAll())
             .then(employees => this.setState({
                 employees: employees
             })
@@ -44,12 +40,8 @@ export default class ApplicationViews extends Component {
     }
 
     deleteOwner = id => {
-        return fetch(`http://localhost:5002/owners/${id}`, {
-            method: "DELETE"
-        })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/owners`))
-            .then(e => e.json())
+        return OwnerManager.deleteOwner(id)
+            .then(() => OwnerManager.getAll())
             .then(owners => this.setState({
                 owners: owners
             })
@@ -60,24 +52,17 @@ export default class ApplicationViews extends Component {
     componentDidMount() {
         const newState = {}
 
-        fetch("http://localhost:5002/animals")
-            .then(r => r.json())
+        return AnimalManager.getAll()
             .then(animals => newState.animals = animals)
-            .then(() => fetch("http://localhost:5002/employees")
-                .then(r => r.json()))
-            .then(employees => newState.employees = employees)
-            .then(() => fetch("http://localhost:5002/locations")
-                .then(r => r.json()))
-            .then(locations => newState.locations = locations)
-            .then(() => fetch("http://localhost:5002/owners")
-                .then(r => r.json()))
-            .then(owners => newState.owners = owners)
-            .then(() => this.setState(newState))
-
-
+            .then(() => EmployeeManager.getAll())
+                .then(employees => newState.employees = employees)
+                .then(() => LocationManager.getAll())
+                    .then(locations => newState.locations = locations)
+                    .then(() => OwnerManager.getAll())
+                        .then(owners => newState.owners = owners)
+                        .then(() => this.setState(newState))
 
     }
-
 
 
 

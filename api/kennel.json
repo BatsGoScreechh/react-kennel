@@ -1,10 +1,6 @@
 {
   "employees": [
     {
-      "id": 1,
-      "name": "Jessica Younker"
-    },
-    {
       "id": 2,
       "name": "Jordan Nelson"
     },
@@ -35,18 +31,6 @@
       "name": "Doodles"
     },
     {
-      "id": 2,
-      "name": "Jack"
-    },
-    {
-      "id": 4,
-      "name": "Henley"
-    },
-    {
-      "id": 5,
-      "name": "Derkins"
-    },
-    {
       "id": 6,
       "name": "Checkers"
     }
@@ -57,24 +41,12 @@
       "name": "Ryan"
     },
     {
-      "id": 2,
-      "name": "Dale"
-    },
-    {
-      "id": 3,
-      "name": "Russ"
-    },
-    {
       "id": 4,
       "name": "Sydney"
     },
     {
       "id": 5,
       "name": "Megan"
-    },
-    {
-      "id": 6,
-      "name": "Michelle"
     },
     {
       "id": 7,
