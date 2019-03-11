@@ -5,9 +5,9 @@ class Location extends Component {
         return (
             <article>
                 <h1>Location List</h1>
-                {this.props.locations.map((singleLocation) => {
-                   return <div><p key={singleLocation.name}>{singleLocation.name}</p>
-                    <p key ={singleLocation.name}>{singleLocation.address}</p>
+                {this.props.locations.map((location) => {
+                   return <div><p key={location.name}>{location.name}</p>
+                    <p key ={location.name}>{location.address}</p>
                    </div>
                 })}
             </article>

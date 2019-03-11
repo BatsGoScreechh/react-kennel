@@ -6,6 +6,8 @@
 .icon--dog {
     width: 50px;
     height: 50px;
+    text-align: center;
+
 }
 
 .card {
@@ -22,4 +24,8 @@
 .card-link {
     margin: 12px 0 0 0;
     font-size: 0.7em;
+}
+
+.animalName {
+    text-align: center;
 }
