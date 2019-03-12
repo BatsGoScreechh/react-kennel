@@ -18,7 +18,10 @@ export default class OwnerDetail extends Component {
                     <div className="card-body">
                         <h5 className="card-title">
                             <img src={ownerAvatar} alt="" className="icon--owner" />
-                            <p className="ownerName">{owner.name}</p>
+                            <p className="ownerName">
+                                {owner.name}
+
+                            </p>
                         </h5>
                         <h6 className="card-title">{owner.address}</h6>
                         <a href="#"

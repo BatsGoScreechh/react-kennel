@@ -8,22 +8,34 @@ export default class AnimalList extends Component {
 
     render() {
         return (
-            <section className="animals">
-                {
-                    this.props.animals.map(animal =>
-                        <div key={animal.id} className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">
-                                    <img src={dog} alt="" className="icon--dog" />
-                                    <p className="animalName">{animal.name}</p>
-                                    <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
+            <React.Fragment>
+                <div className="animalButton">
+                    <button type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                            this.props.history.push("/animals/new")
+                        }
+                        }>
+                        Admit Animal
+                    </button>
+                </div>
+                <section className="animals">
+                    {
+                        this.props.animals.map(animal =>
+                            <div key={animal.id} className="card">
+                                <div className="card-body">
+                                    <h5 className="card-title">
+                                        <img src={dog} alt="" className="icon--dog" />
+                                        <p className="animalName">{animal.name}</p>
+                                        <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
 
-                                </h5>
+                                    </h5>
+                                </div>
                             </div>
-                        </div>
-                    )
-                }
-            </section>
+                        )
+                    }
+                </section>
+            </React.Fragment>
         )
 
     }

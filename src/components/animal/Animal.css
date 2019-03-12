@@ -29,3 +29,19 @@
 .animalName {
     text-align: center;
 }
+
+.animalButton {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 0 10px 0;
+  }
+
+  .card-body {
+    text-align: center
+}
+
+  h6 {
+      text-align: center;
+      text-decoration: underline;
+      margin-top: 5px;
+  }

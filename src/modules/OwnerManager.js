@@ -10,5 +10,9 @@ export default {
         return fetch(`http://localhost:5002/owners/${id}`, {
             method: "DELETE"
         }).then(owners => owners.json)
+    },
+    searchOwner: id => {
+        return fetch(`http://localhost:5002/owners/${id}?_expand=animal`)
+        .then(response => response.json())  // Parse as JSON
     }
 }

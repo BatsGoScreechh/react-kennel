@@ -4,6 +4,11 @@
       "id": 2,
       "name": "Jordan Nelson",
       "title": "Manager"
+    },
+    {
+      "id": 1,
+      "name": "David Bird",
+      "title": "Groomer"
     }
   ],
   "locations": [
@@ -20,14 +25,40 @@
   ],
   "animals": [
     {
+      "name": "Zapdos",
+      "breed": "Parakeet",
+      "speciesId": 3,
+      "employeeId": 1,
+      "id": 1
+    },
+    {
+      "name": "Poochyena",
+      "breed": "Doberman",
+      "speciesId": 1,
+      "employeeId": 1,
+      "id": 2
+    },
+    {
+      "name": "Articuno",
+      "breed": "Parrot",
+      "speciesId": 3,
+      "employeeId": 2,
+      "id": 3
+    }
+
+  ],
+  "species": [
+    {
+      "id": 1,
+      "name": "Dog"
+    },
+    {
       "id": 2,
-      "name": "Tigger",
-      "breed": "Pomeranian"
+      "name": "Cat"
     },
     {
       "id": 3,
-      "name": "Squirtle",
-      "breed": "Labrador"
+      "name": "Bird"
     }
   ],
   "owners": [
@@ -42,6 +73,12 @@
       "name": "Megan",
       "address": "111 2nd Street",
       "animalId": 3
+    },
+    {
+      "id": 2,
+      "name": "Henry",
+      "address": "222 1st Street",
+      "animalId": 1
     }
   ]
 }
