@@ -23,7 +23,7 @@ export default class ApplicationViews extends Component {
         locations: [],
         owners: [],
         species: [],
-        animalSpecies: []
+
     }
 
     deleteAnimal = id => {
@@ -62,6 +62,15 @@ export default class ApplicationViews extends Component {
             )
     }
 
+    addOwner = owner =>
+  OwnerManager.postOwner(owner)
+    .then(() => OwnerManager.getAll())
+    .then(owners =>
+      this.setState({
+        owners: owners
+      })
+    );
+
 
     componentDidMount() {
         const newState = {}
@@ -76,8 +85,6 @@ export default class ApplicationViews extends Component {
             .then(owners => newState.owners = owners)
             .then(() => SpeciesManager.getAll())
             .then((species => newState.species=species))
-            .then(() => SpeciesManager.animalSpecies())
-            .then((animalSpecies => newState.species=animalSpecies))
             .then(() => this.setState(newState))
 
     }
@@ -95,7 +102,7 @@ export default class ApplicationViews extends Component {
                         animals={this.state.animals}
                         species={this.state.species}
                         employees={this.state.employees}
-                        animalSpecies={this.state.animalSpecies} />
+                         />
                 }} />
                 <Route path="/animals/new" render={(props) => {
                     return <AnimalForm {...props}
@@ -103,7 +110,8 @@ export default class ApplicationViews extends Component {
                         employees={this.state.employees}
                         species={this.state.species}
                         animals={this.state.animals}
-                        animalSpecies={this.state.animalSpecies} />
+                        owners={this.state.owners}
+                         />
 
 
                 }} />

@@ -12,7 +12,8 @@ export default class EmployeeList extends Component {
                         <div className="card-body">
                             <h5 className="card-title">
                                 <img src={employeeAvatar} alt="" className="icon--employee" />
-                                <p className="employeeName">{employee.name}</p>
+                                <p className="employeeName">{employee.firstName} {employee.lastName}</p>
+                                <p>{employee.title}</p>
                                 <Link className="nav-link" to={`/employees/${employee.id}`}>Details</Link>
 
                             </h5>

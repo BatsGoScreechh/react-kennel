@@ -2,12 +2,14 @@
   "employees": [
     {
       "id": 2,
-      "name": "Jordan Nelson",
+      "firstName": "Jordan",
+      "lastName": "Nelson",
       "title": "Manager"
     },
     {
       "id": 1,
-      "name": "David Bird",
+      "firstName": "David",
+      "lastName": "Bird",
       "title": "Groomer"
     }
   ],
@@ -25,10 +27,11 @@
   ],
   "animals": [
     {
-      "name": "Zapdos",
+      "name": "rge",
       "breed": "Parakeet",
       "speciesId": 3,
-      "employeeId": 1,
+      "employeeId": 2,
+      "ownerId": null,
       "id": 1
     },
     {
@@ -37,15 +40,7 @@
       "speciesId": 1,
       "employeeId": 1,
       "id": 2
-    },
-    {
-      "name": "Articuno",
-      "breed": "Parrot",
-      "speciesId": 3,
-      "employeeId": 2,
-      "id": 3
     }
-
   ],
   "species": [
     {
@@ -64,21 +59,9 @@
   "owners": [
     {
       "id": 1,
-      "name": "Ryan",
-      "address": "123 Main Street",
-      "animalId": 2
-    },
-    {
-      "id": 5,
-      "name": "Megan",
-      "address": "111 2nd Street",
-      "animalId": 3
-    },
-    {
-      "id": 2,
-      "name": "Henry",
-      "address": "222 1st Street",
-      "animalId": 1
+      "animalId": 1,
+      "firstName": "Katrina",
+      "lastName": "Brown"
     }
   ]
 }

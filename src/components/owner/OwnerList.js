@@ -12,7 +12,7 @@ export default class OwnerList extends Component {
                     <div className="card-body">
                         <h5 className="card-title">
                             <img src={ownerAvatar} alt="" className="icon--owner" />
-                            <p className ="ownerName">{owner.name}</p>
+                            <p className ="ownerName">{owner.firstName} {owner.lastName}</p>
                             <Link className="nav-link" to={`/owners/${owner.id}`}>Details</Link>
 
                         </h5>

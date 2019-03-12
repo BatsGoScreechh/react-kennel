@@ -24,14 +24,14 @@ export default class AnimalDetail extends Component {
                             <img src={dog} alt="" className="icon--dog" />
                             <p>{animal.name}</p>
                         </h3>
-                        <h6>Breed</h6> {animal.breed}
-                        <h6>Species</h6> {animal.species.name}
+                        <h6>Breed</h6>{animal.breed}
+                        <h6>Species</h6>{animal.species.name}
                         <hr></hr>
-                        <h6>Caretaker</h6> <br></br> {animal.employee.name}
+                        <h6>Caretaker</h6>{animal.employee.firstName} {animal.employee.lastName}
                         <br></br>
                         <a href="#"
-                            onClick={() => this.props.deleteAnimal(animal.id)
-                                .then(() => this.props.history.push("/animals"))}
+                            onClick={()=>{this.props.deleteAnimal(animal.id)
+                                this.props.history.push("/animals")}}
                             className="card-link">Delete</a>
                     </div>
                 </div>
