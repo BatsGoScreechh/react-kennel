@@ -1,6 +1,6 @@
 export default {
     get(id) {
-        return fetch(`http://localhost:5002/species/species/${id}`).then(species => species.json())
+        return fetch(`http://localhost:5002/species/${id}`).then(species => species.json())
     },
     getAll: () => {
         return fetch("http://localhost:5002/species")

@@ -23,7 +23,7 @@ export default class OwnerDetail extends Component {
 
                             </p>
                         </h5>
-                        <h6 className="card-title">{owner.address}</h6>
+                        <p className="card-title">{owner.address}</p>
                         <a href="#"
                             onClick={() => this.props.deleteOwner(owner.id)
                                 .then(() => this.props.history.push("/owners"))}

@@ -1,131 +1,123 @@
 import React, { Component } from "react";
-import "./Animal.css";
+import EmployeeManager from "../../modules/EmployeeManager";
+export default class EmployeeForm extends Component {
+  // Set initial state
+  state = {
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    errorMessage: ""
+  };
 
-export default class AnimalForm extends Component {
-    // Set initial state
-    state = {
-        animalName: "",
-        breed: "",
-        employeeId: "",
-        speciesId: "",
-        ownerId: "",
-    };
+  // Update whatever the user types in to state as they type
+  handleFieldChange = evt => {
+    const stateToChange = {};
+    stateToChange[evt.target.id] = evt.target.value;
+    this.setState(stateToChange);
+  };
 
-    // Update state whenever an input field is edited
-    handleFieldChange = evt => {
-        const stateToChange = {};
-        stateToChange[evt.target.id] = evt.target.value;
-        this.setState(stateToChange);
-    };
+  constructNewEmployee = evt => {
+    evt.preventDefault();
 
-    /*
-          Local method for validation, creating animal object, and
-          invoking the function reference passed from parent component
-       */
-    constructNewAnimal = evt => {
-        evt.preventDefault();
-        if (this.state.employee === "") {
-            window.alert("Please select a caretaker");
-        } else {
-            const animal = {
-                name: this.state.animalName,
-                breed: this.state.breed,
-                speciesId: parseInt(this.state.speciesId),
-                // Make sure the employeeId is saved to the database as a number since it is a foreign key.
-                employeeId: parseInt(this.state.employeeId),
-                ownerId: parseInt(this.state.ownerId)
-            };
-            const owner = {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                address: this.state.address
-            }
-
-            // Create the animal and redirect user to animal list
-            this.props
-                .addAnimal(animal)
-                .addOwner(owner)
-                .then(() => this.props.history.push("/animals"));
-        }
-    };
-
-    render() {
-        return (
-            <React.Fragment>
-                <form className="animalForm">
-                    <div className="form-group">
-                        <label htmlFor="animalName">Animal name</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            onChange={this.handleFieldChange}
-                            id="animalName"
-                            placeholder="Animal name"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="breed">Breed</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            onChange={this.handleFieldChange}
-                            id="breed"
-                            placeholder="Breed"
-                        />
-                    </div>
-
-
-                    <div className="form-group">
-                        <label htmlFor="species">Species</label>
-                        <select
-                            defaultValue=""
-                            name="species"
-                            id="speciesId"
-                            onChange={
-                                this.handleFieldChange
-                            }
-                        >
-                            <option value="">Select a species</option>
-                            {this.props.species.map(s => (
-                                <option key={s.id} id={s.id} value={s.id}>
-                                    {s.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-
-                    <div className="form-group">
-                        <label htmlFor="employee">Assign to caretaker</label>
-                        <select
-                            defaultValue=""
-                            name="employee"
-                            id="employeeId"
-                            onChange={this.handleFieldChange}
-                        >
-                            <option value="">Select an employee</option>
-                            {this.props.employees.map(e => (
-                                <option key={e.id} id={e.id} value={e.id}>
-                                    {e.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-{/* Owner portion of the form */}
-
-
-{/* End Owner portion */}
-                    <button
-                        type="submit"
-                        onClick={this.constructNewAnimal}
-                        className="btn btn-primary"
-                    >
-                        Submit
-          </button>
-                </form>
-            </React.Fragment>
-        );
+    // Before we do anything else, let's make sure their two passwords match.
+    if (this.state.password !== this.state.passwordConfirm) {
+      const errorMessage = "Your passwords didn't match. Please try again.";
+      this.setState({ errorMessage: errorMessage });
+      return null; // returning null just bumps us out of the function so the rest of it doesnt' run.
     }
+
+    // Build our employee object for the database
+    const employeeToPost = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    // When the user filled out the register form, they entered an email address. We need to make sure that email address is unique, so let's search the database for other users who may have it.
+    EmployeeManager.getByEmail(this.state.email).then(employee => {
+      // If that email address already exists in the database, throw a helpful error message
+      if (employee.length > 0) {
+        const errorMessage =
+          "We're sorry, that email already exists. Would you like to log in instead?";
+        this.setState({ errorMessage: errorMessage });
+      } else {
+        // If the email isn't in the db, go ahead and register
+        this.props.registerEmployee(employeeToPost).then(employee => {
+          console.log(employee);
+          sessionStorage.setItem("credentials", JSON.stringify(employee.id));
+          this.props.history.push("/");
+          this.props.refreshEmployees(); // This function is in our ApplicationViews component. It fetchs all the employees from the database and sets them to state in ApplicationViews so that we see our new user when we go to the /employees route.
+        });
+      }
+    });
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <form className="employeeForm">
+          <div className="form-group">
+            <label htmlFor="firstName">First Name</label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              onChange={this.handleFieldChange}
+              id="firstName"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              onChange={this.handleFieldChange}
+              id="lastName"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              required
+              className="form-control"
+              onChange={this.handleFieldChange}
+              id="email"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className="form-control"
+              onChange={this.handleFieldChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="passwordConfirm">Confirm Password</label>
+            <input
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              className="form-control"
+              onChange={this.handleFieldChange}
+            />
+          </div>
+          <h4>{this.state.errorMessage}</h4>
+          <button
+            type="submit"
+            onClick={this.constructNewEmployee}
+            className="btn btn-primary"
+          >
+            Submit
+          </button>
+        </form>
+      </React.Fragment>
+    );
+  }
 }

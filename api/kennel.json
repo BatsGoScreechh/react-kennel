@@ -1,16 +1,11 @@
 {
   "employees": [
     {
-      "id": 2,
-      "firstName": "Jordan",
-      "lastName": "Nelson",
-      "title": "Manager"
-    },
-    {
-      "id": 1,
       "firstName": "David",
       "lastName": "Bird",
-      "title": "Groomer"
+      "email": "bird11@mctc.edu",
+      "password": "123",
+      "id": 1
     }
   ],
   "locations": [
@@ -27,19 +22,25 @@
   ],
   "animals": [
     {
+      "id": 3,
       "name": "rge",
-      "breed": "Parakeet",
-      "speciesId": 3,
-      "employeeId": 2,
-      "ownerId": null,
-      "id": 1
+      "breed": "Doberman",
+      "speciesId": 2,
+      "employeeId": 1
     },
     {
-      "name": "Poochyena",
-      "breed": "Doberman",
-      "speciesId": 1,
+      "id": 4,
+      "name": "Moltres",
+      "breed": "Parakeet",
+      "speciesId": 3,
+      "employeeId": 1
+    },
+    {
+      "name": "Articuno",
+      "breed": "Penguin",
+      "speciesId": 3,
       "employeeId": 1,
-      "id": 2
+      "id": 5
     }
   ],
   "species": [
@@ -59,9 +60,9 @@
   "owners": [
     {
       "id": 1,
-      "animalId": 1,
-      "firstName": "Katrina",
-      "lastName": "Brown"
+      "firstName": "This",
+      "lastName": "guy",
+      "address": "10101 Binary Court"
     }
   ]
 }

@@ -1,6 +1,6 @@
 export default {
     get(id) {
-        return fetch(`http://localhost:5002/owners/owners/${id}`).then(owners => owners.json())
+        return fetch(`http://localhost:5002/owners/${id}`).then(owners => owners.json())
     },
     getAll: () => {
         return fetch("http://localhost:5002/owners")
