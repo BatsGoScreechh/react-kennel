@@ -6,6 +6,13 @@
       "email": "bird11@mctc.edu",
       "password": "123",
       "id": 1
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "123@123.12",
+      "password": "123",
+      "id": 2
     }
   ],
   "locations": [
@@ -26,12 +33,12 @@
       "name": "rge",
       "breed": "Doberman",
       "speciesId": 2,
-      "employeeId": 1
+      "employeeId": 2
     },
     {
       "id": 4,
       "name": "Moltres",
-      "breed": "Parakeet",
+      "breed": "Toucan",
       "speciesId": 3,
       "employeeId": 1
     },
@@ -41,6 +48,20 @@
       "speciesId": 3,
       "employeeId": 1,
       "id": 5
+    },
+    {
+      "id": 6,
+      "name": "Zapdos",
+      "breed": "Squawker",
+      "speciesId": 3,
+      "employeeId": 1
+    },
+    {
+      "name": "eqfqef",
+      "breed": "rwg",
+      "speciesId": 2,
+      "employeeId": 2,
+      "id": 7
     }
   ],
   "species": [

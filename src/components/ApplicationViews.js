@@ -70,12 +70,12 @@ export default class ApplicationViews extends Component {
     };
 
     registerEmployee = employeeObject =>
-    EmployeeManager.postEmployee(employeeObject);
+        EmployeeManager.postEmployee(employeeObject);
 
-  refreshEmployees = () =>
-    EmployeeManager.getAll().then(parsedEmps => {
-      this.setState({ employees: parsedEmps });
-    });
+    refreshEmployees = () =>
+        EmployeeManager.getAll().then(parsedEmps => {
+            this.setState({ employees: parsedEmps });
+        });
 
     deleteEmployee = id => {
         return EmployeeManager.deleteEmployee(id)
@@ -177,14 +177,13 @@ export default class ApplicationViews extends Component {
                     }}
                 />
 
-                <Route exact path="/employees" render={(props) => {
+                <Route exact path="/employees" render={props => {
                     if (this.isAuthenticated()) {
-                        return <EmployeeList {...props}
-
+                        return <EmployeeList deleteEmployee={this.deleteEmployee}
+                            animals={this.state.animals}
                             employees={this.state.employees} />
-                    }
-                    else {
-                        return <Redirect to="/login"></Redirect>
+                    } else {
+                        return <Redirect to="/login" />
                     }
                 }} />
 
@@ -200,25 +199,25 @@ export default class ApplicationViews extends Component {
                                 registerEmployee={this.registerEmployee}
                                 refreshEmployees={this.refreshEmployees}
                             />
-                            );
-                        }}
-                      />
-                            <Route exact path="/owners" render={(props) => {
-                                if (this.isAuthenticated()) {
-                                    return <OwnerList {...props}
+                        );
+                    }}
+                />
+                <Route exact path="/owners" render={(props) => {
+                    if (this.isAuthenticated()) {
+                        return <OwnerList {...props}
 
-                                        owner={this.state.owners} />
-                                }
-                                else {
-                                    return <Redirect to="/login"></Redirect>
-                                }
-                            }} />
+                            owner={this.state.owners} />
+                    }
+                    else {
+                        return <Redirect to="/login"></Redirect>
+                    }
+                }} />
 
-                            <Route path="/owners/:ownerId(\d+)" render={(props) => {
-                                return <OwnerDetail {...props} deleteOwner={this.deleteOwner} owners={this.state.owners} />
-                            }} />
+                <Route path="/owners/:ownerId(\d+)" render={(props) => {
+                    return <OwnerDetail {...props} deleteOwner={this.deleteOwner} owners={this.state.owners} />
+                }} />
             </React.Fragment>
-            )
+        )
 
-        }
     }
+}

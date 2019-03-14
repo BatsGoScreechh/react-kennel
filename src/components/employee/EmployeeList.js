@@ -1,28 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component } from "react"
 import employeeAvatar from "./EmployeeIcon.png"
 import "./Employee.css"
-import { Link } from "react-router-dom";
+import AnimalCard from "../animal/AnimalCard"
+
 
 export default class EmployeeList extends Component {
-    render() {
-        return <section className="employees">
+    render () {
+        return (
+            <section className="employees">
             {
                 this.props.employees.map(employee =>
-                    <div key={employee.id} className="card">
+                    <div key={employee.id} className="card card--employee">
                         <div className="card-body">
                             <h5 className="card-title">
-                                <img src={employeeAvatar} alt="" className="icon--employee" />
-                                <p className="employeeName">{employee.firstName} {employee.lastName}</p>
-                                <p>{employee.title}</p>
-                                <Link className="nav-link" to={`/employees/${employee.id}`}>Details</Link>
-
+                                <img src={employeeAvatar} className="icon--employee" />
+                                {employee.firstName} {employee.lastName}
+                            <a href="#"
+                                onClick={() => this.props.deleteEmployee(employee.id)}
+                                className="card-link">Delete</a>
                             </h5>
+
+                            <h6 class="card-subtitle mb-2 text-muted">Caretaker For</h6>
+                            <div className="animals--caretaker">
+                            {
+                                this.props.animals
+                                    .filter(anml => anml.employeeId === employee.id)
+                                    .map(anml => <AnimalCard key={anml.id} animal={anml} {...this.props} />)
+                            }
+                            </div>
+
                         </div>
                     </div>
                 )
             }
-        </section>
-
+            </section>
+        )
     }
 }
-

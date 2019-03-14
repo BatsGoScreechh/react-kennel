@@ -1,42 +1,26 @@
-import React, { Component } from 'react'
-import dog from "./DogIcon.png"
+import React, { Component } from "react"
 import "./Animal.css"
-import { Link } from "react-router-dom";
+import AnimalCard from "./AnimalCard"
 
 export default class AnimalList extends Component {
-
-
-    render() {
+    render () {
         return (
             <React.Fragment>
                 <div className="animalButton">
                     <button type="button"
-                        className="btn btn-success"
-                        onClick={() => {
-                            this.props.history.push("/animals/new")
-                        }
-                        }>
+                            onClick={()=> this.props.history.push("/animals/new")}
+                            className="btn btn-success">
                         Admit Animal
                     </button>
                 </div>
                 <section className="animals">
-                    {
-                        this.props.animals.map(animal =>
-                            <div key={animal.id} className="card">
-                                <div className="card-body">
-                                    <h5 className="card-title">
-                                        <img src={dog} alt="" className="icon--dog" />
-                                        <p className="animalName">{animal.name}</p>
-                                        <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
-
-                                    </h5>
-                                </div>
-                            </div>
-                        )
-                    }
+                {
+                    this.props.animals.map(animal =>
+                        <AnimalCard key={animal.id} animal={animal} {...this.props} />
+                    )
+                }
                 </section>
             </React.Fragment>
         )
-
     }
 }

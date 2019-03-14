@@ -28,13 +28,8 @@ export default class AnimalDetail extends Component {
                         <h6>Species</h6>{animal.species.name}
                         <hr></hr>
                         <h6>Caretaker</h6>{animal.employee.firstName} {animal.employee.lastName}
-                        <br></br>
-                        <a href="#"
-                            onClick={() => {
-                                this.props.deleteAnimal(animal.id)
-                                this.props.history.push("/animals")
-                            }}
-                            className="card-link">Delete</a>
+                        <hr></hr>
+
                         <button
                             type="button"
                             className="btn btn-success"
@@ -44,6 +39,14 @@ export default class AnimalDetail extends Component {
                         >
                             Edit
 </button>
+                        <br></br>
+                        <a href="#"
+                            onClick={() => {
+                                this.props.deleteAnimal(animal.id)
+                                this.props.history.push("/animals")
+                            }}
+                            className="card-link">Delete</a>
+
                     </div>
                 </div>
             </section>
